@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estrategia de Contenido — INTERLINK SCHOOL</title>
+  <style>
+    :root {
+      --morado: #4338ca;
+      --morado-med: #6366f1;
+      --morado-light: #e0e7ff;
+      --verde: #059669;
+      --verde-light: #d1fae5;
+      --dorado: #d97706;
+      --dorado-light: #fef3c7;
+      --rosa: #db2777;
+      --rosa-light: #fce7f3;
+      --gris: #f1f5f9;
+      --gris-dark: #64748b;
+      --text: #1e293b;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f0f4f8;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #312e81 0%, #4338ca 50%, #6d28d9 100%);
+      color: white;
+      padding: 40px 48px 32px;
+    }
+    .header-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .header h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+    .header h1 span { color: #34d399; }
+    .header .subtitle { font-size: 15px; opacity: 0.85; margin-top: 4px; }
+    .header-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .tag {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+    .tag.accent { background: #059669; border-color: #059669; }
+    .tag.gold { background: #d97706; border-color: #d97706; }
+
+    /* LAYOUT */
+    .container { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--gris-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--morado);
+      margin: 32px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--morado-light);
+    }
+
+    /* STAT CARDS */
+    .stat-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .stat-num { font-size: 36px; font-weight: 800; color: var(--morado); line-height: 1; }
+    .stat-num.green { color: var(--verde); }
+    .stat-num.gold { color: var(--dorado); }
+    .stat-num.pink { color: var(--rosa); }
+    .stat-label { font-size: 13px; color: var(--gris-dark); font-weight: 500; margin-top: 4px; }
+    .stat-sub { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+    /* BRAND INFO */
+    .brand-row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .brand-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .brand-info strong { display: block; font-size: 13px; color: var(--text); }
+    .brand-info span { font-size: 12px; color: var(--gris-dark); }
+
+    /* PILLARS */
+    .pillar { border-radius: 14px; padding: 20px; border: 2px solid; }
+    .pillar.p1 { background: #eef2ff; border-color: #a5b4fc; }
+    .pillar.p2 { background: #ecfdf5; border-color: #6ee7b7; }
+    .pillar.p3 { background: #fffbeb; border-color: #fcd34d; }
+    .pillar.p4 { background: #fdf2f8; border-color: #f9a8d4; }
+    .pillar-icon { font-size: 28px; margin-bottom: 8px; }
+    .pillar-name { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .pillar.p1 .pillar-name { color: #4338ca; }
+    .pillar.p2 .pillar-name { color: #059669; }
+    .pillar.p3 .pillar-name { color: #b45309; }
+    .pillar.p4 .pillar-name { color: #be185d; }
+    .pillar-pct { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+    .pillar.p1 .pillar-pct { color: #4338ca; }
+    .pillar.p2 .pillar-pct { color: #059669; }
+    .pillar.p3 .pillar-pct { color: #b45309; }
+    .pillar.p4 .pillar-pct { color: #be185d; }
+    .pillar ul { margin-top: 10px; padding-left: 16px; }
+    .pillar ul li { font-size: 12px; color: var(--text); margin-bottom: 4px; }
+
+    /* PARRILLA */
+    .parrilla-grid {
+      display: grid;
+      grid-template-columns: 100px repeat(5, 1fr);
+      gap: 6px;
+    }
+    .parrilla-header {
+      background: var(--morado);
+      color: white;
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .week-label {
+      background: var(--gris);
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--morado);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .parrilla-cell {
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 11px;
+      line-height: 1.4;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .parrilla-cell .tipo {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      width: fit-content;
+      margin-bottom: 2px;
+    }
+    .parrilla-cell .titulo { font-weight: 700; font-size: 11px; }
+    .parrilla-cell .copy { font-size: 10px; color: #475569; }
+    .c-edu { background: #eef2ff; }
+    .c-edu .tipo { background: #c7d2fe; color: #3730a3; }
+    .c-trans { background: #ecfdf5; }
+    .c-trans .tipo { background: #a7f3d0; color: #065f46; }
+    .c-oferta { background: #fffbeb; }
+    .c-oferta .tipo { background: #fde68a; color: #92400e; }
+    .c-com { background: #fdf2f8; }
+    .c-com .tipo { background: #fbcfe8; color: #9d174d; }
+    .c-ads { background: #f0fdf4; }
+    .c-ads .tipo { background: #bbf7d0; color: #14532d; }
+
+    /* BENCHMARK */
+    .comp-table { width: 100%; border-collapse: collapse; }
+    .comp-table th {
+      background: var(--morado);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .comp-table th:first-child { border-radius: 8px 0 0 0; }
+    .comp-table th:last-child { border-radius: 0 8px 0 0; }
+    .comp-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table tr:nth-child(even) td { background: var(--gris); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; }
+    .badge.high { background: #dcfce7; color: #166534; }
+    .badge.med { background: #fef9c3; color: #854d0e; }
+    .badge.low { background: #fee2e2; color: #991b1b; }
+
+    /* FORMATS */
+    .format-row {
+      display: flex; gap: 8px; align-items: flex-start;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .format-row:last-child { border-bottom: none; }
+    .format-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--morado); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; flex-shrink: 0;
+    }
+    .format-info strong { font-size: 13px; display: block; }
+    .format-info span { font-size: 11px; color: var(--gris-dark); }
+    .format-badge { margin-left: auto; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; flex-shrink: 0; height: fit-content; }
+    .fb { background: #dbeafe; color: #1e40af; }
+    .ig { background: #fce7f3; color: #9d174d; }
+    .both { background: #ede9fe; color: #5b21b6; }
+
+    /* KPIs */
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .kpi-item { background: var(--gris); border-radius: 10px; padding: 14px; }
+    .kpi-item .kpi-val { font-size: 20px; font-weight: 800; color: var(--morado); }
+    .kpi-item .kpi-name { font-size: 11px; color: var(--gris-dark); margin-top: 2px; }
+
+    /* FREQ TABLE */
+    .freq-table { width: 100%; border-collapse: collapse; }
+    .freq-table th { background: var(--gris); padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700; color: var(--gris-dark); text-transform: uppercase; }
+    .freq-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .freq-table tr:last-child td { border-bottom: none; }
+
+    /* TIPS */
+    .tip { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .tip:last-child { border-bottom: none; }
+    .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .tip-text strong { font-size: 12px; display: block; }
+    .tip-text span { font-size: 11px; color: var(--gris-dark); }
+
+    /* IDEAS VIRALES */
+    .viral-item {
+      background: var(--gris);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .viral-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--morado); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0;
+    }
+    .viral-text strong { font-size: 12px; }
+    .viral-text span { font-size: 11px; color: var(--gris-dark); display: block; margin-top: 2px; }
+
+    .footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 11px; }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .parrilla-grid { grid-template-columns: 80px repeat(3, 1fr); }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>INTERLINK <span>SCHOOL</span> · Estrategia de Contenido</h1>
+      <p class="subtitle">Dashboard de Marketing — Instagram &amp; Facebook · Julio 2026</p>
+    </div>
+    <div style="text-align:right; opacity:0.7; font-size:12px;">
+      <div>Nicho: Academia de Idiomas — Inglés</div>
+      <div>Segmento: Profesionales · Ejecutivos · Emprendedores</div>
+      <div>Plataformas: IG + FB</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span class="tag">🎓 Certificación TrackTest Oficial</span>
+    <span class="tag">🌐 Online + Presencial</span>
+    <span class="tag">👔 Ejecutivos y Emprendedores</span>
+    <span class="tag accent">⚡ Certifica tu nivel en 48 horas</span>
+    <span class="tag gold">🏆 +20 años de experiencia</span>
+    <span class="tag">💼 Inglés para Negocios</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- STATS TOP -->
+  <div class="section-label">📊 Contexto del Mercado — Idiomas en Ecuador 2026</div>
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="stat-card">
+      <div class="stat-num">14M</div>
+      <div class="stat-label">Usuarios activos Facebook Ecuador</div>
+      <div class="stat-sub">Principal red social del país</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">+40%</div>
+      <div class="stat-label">Crecimiento cursos inglés online EC</div>
+      <div class="stat-sub">Desde 2022 a la fecha</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num gold">80%</div>
+      <div class="stat-label">Del contenido debe educar o entretener</div>
+      <div class="stat-sub">Regla de oro para academias de idiomas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num pink">3x</div>
+      <div class="stat-label">Más engagement con contenido educativo vs. promocional</div>
+      <div class="stat-sub">Dato: academias de idiomas LATAM 2025</div>
+    </div>
+  </div>
+
+  <!-- BRAND + COMPETITORS -->
+  <div class="grid-2" style="margin-bottom:20px;">
+
+    <div class="card">
+      <div class="card-title"><span>🏫</span> Perfil de Marca — INTERLINK SCHOOL</div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#eef2ff;">🎯</div>
+        <div class="brand-info">
+          <strong>Propuesta de valor</strong>
+          <span>La certificación de inglés más rápida del mercado para profesionales que no tienen tiempo que perder. Nivel oficial en 48 horas con TrackTest.</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#ecfdf5;">👥</div>
+        <div class="brand-info">
+          <strong>Audiencias principales</strong>
+          <span>Profesionales que necesitan certificar su nivel · Ejecutivos en ascenso o con requisito corporativo · Emprendedores con proyección internacional · Empresas (capacitación de equipos)</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#fffbeb;">📚</div>
+        <div class="brand-info">
+          <strong>Modalidades de curso</strong>
+          <span>Online con horarios flexibles · Presencial · Programas para colegios · Inglés empresarial personalizado</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#fdf2f8;">🏆</div>
+        <div class="brand-info">
+          <strong>Diferenciadores clave</strong>
+          <span>Grupos máx. 8 estudiantes · Docentes nativos · Certificación TrackTest internacional · Ahorra 70% vs otros exámenes</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#f5f3ff;">⚡</div>
+        <div class="brand-info">
+          <strong>Ventaja competitiva única</strong>
+          <span>"Certifica tu nivel en 48 horas" — los profesionales y ejecutivos valoran la velocidad. Un certificado oficial que no les roba semanas de su agenda. Gancho #1 para ads.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>⚔️</span> Benchmark Competitivo — Academias Ecuador</div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Competidor</th>
+            <th>Fortaleza</th>
+            <th>Redes</th>
+            <th>Debilidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cambridge Sol</strong></td>
+            <td>Único Platinum Partner Cambridge</td>
+            <td><span class="badge high">Alta</span></td>
+            <td>Muy institucional, poco cercano</td>
+          </tr>
+          <tr>
+            <td><strong>Bénédict Schools</strong></td>
+            <td>5 sedes Gye/Samborondón</td>
+            <td><span class="badge high">Alta</span></td>
+            <td>Contenido principalmente promo</td>
+          </tr>
+          <tr>
+            <td><strong>COPEI (ESPOL)</strong></td>
+            <td>Metodología activa, 5 sedes</td>
+            <td><span class="badge med">Media</span></td>
+            <td>Bajo engagement en redes</td>
+          </tr>
+          <tr>
+            <td><strong>CEN</strong></td>
+            <td>Respaldo Norteamericano</td>
+            <td><span class="badge med">Media</span></td>
+            <td>Poca presencia digital activa</td>
+          </tr>
+          <tr>
+            <td><strong>EF Ecuador</strong></td>
+            <td>Marca global, reconocimiento</td>
+            <td><span class="badge high">Alta</span></td>
+            <td>Precio alto, poco local</td>
+          </tr>
+          <tr>
+            <td><strong>Oxford Ecuador</strong></td>
+            <td>"Nuestro inglés te distingue"</td>
+            <td><span class="badge med">Media</span></td>
+            <td>Contenido genérico, sin diferenciación</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px; padding:12px; background:#fffbeb; border-radius:10px; border-left:3px solid #d97706;">
+        <strong style="font-size:12px; color:#92400e;">🔥 Gap de oportunidad ENORME:</strong>
+        <p style="font-size:11px; color:#78350f; margin-top:4px;">Ninguna academia ecuatoriana hace contenido educativo de inglés viral (tips, quizzes, vocabulario, pronunciación). El primero que lo haga dominará el orgánico. Interlink puede ser esa marca.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <div class="section-label">🏛️ Los 4 Pilares de Contenido</div>
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="pillar p1">
+      <div class="pillar-icon">📖</div>
+      <div class="pillar-name">EDUCACIÓN EN INGLÉS</div>
+      <div class="pillar-pct">35%</div>
+      <div style="font-size:11px;color:#4338ca;font-weight:600;margin-bottom:6px;">El pilar más viral — genera comunidad</div>
+      <ul>
+        <li>Tips de gramática en carrusel</li>
+        <li>Vocabulario del día (Reels)</li>
+        <li>Errores comunes de hispanohablantes</li>
+        <li>Pronunciación: UK vs US English</li>
+        <li>Frases para el trabajo / viajes</li>
+        <li>Quiz interactivos en Stories</li>
+      </ul>
+    </div>
+    <div class="pillar p2">
+      <div class="pillar-icon">🌟</div>
+      <div class="pillar-name">TRANSFORMACIÓN</div>
+      <div class="pillar-pct">30%</div>
+      <div style="font-size:11px;color:#059669;font-weight:600;margin-bottom:6px;">El pilar que más convierte</div>
+      <ul>
+        <li>Testimonios de profesionales certificados</li>
+        <li>Casos de éxito (ascenso, negocio cerrado, visa)</li>
+        <li>Ejecutivo antes y después de certificarse</li>
+        <li>Certificados TrackTest obtenidos en 48 hrs</li>
+        <li>ROI real: "El inglés me abrió este contrato"</li>
+        <li>Emprendedor que cerró cliente internacional</li>
+      </ul>
+    </div>
+    <div class="pillar p3">
+      <div class="pillar-icon">🎓</div>
+      <div class="pillar-name">OFERTA ACADÉMICA</div>
+      <div class="pillar-pct">20%</div>
+      <div style="font-size:11px;color:#b45309;font-weight:600;margin-bottom:6px;">Mostrar qué y cómo enseñamos</div>
+      <ul>
+        <li>Ruta de certificación por nivel (A1→C1)</li>
+        <li>Horarios para profesionales ocupados</li>
+        <li>Modalidad online sin sacrificar agenda</li>
+        <li>Inglés corporativo para equipos y empresas</li>
+        <li>Certificación TrackTest: qué vale, para qué sirve</li>
+        <li>Diagnóstico gratuito de nivel</li>
+      </ul>
+    </div>
+    <div class="pillar p4">
+      <div class="pillar-icon">🌍</div>
+      <div class="pillar-name">CULTURA Y COMUNIDAD</div>
+      <div class="pillar-pct">15%</div>
+      <div style="font-size:11px;color:#be185d;font-weight:600;margin-bottom:6px;">Humanizar la marca</div>
+      <ul>
+        <li>Curiosidades del idioma inglés</li>
+        <li>Diferencias culturales EEUU vs UK</li>
+        <li>El inglés en películas/series</li>
+        <li>Docentes nativos (presentaciones)</li>
+        <li>Eventos, celebraciones, efemérides</li>
+        <li>Behind the scenes de clases</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PARRILLA -->
+  <div class="section-label">📅 Parrilla Estratégica — Mes Tipo (20 piezas/mes)</div>
+  <div class="card" style="margin-bottom:20px; overflow-x:auto;">
+    <div class="card-title"><span>🗓️</span> Calendario de Contenido Mensual · Instagram + Facebook</div>
+    <div class="parrilla-grid" style="min-width:720px;">
+      <div class="parrilla-header">Semana</div>
+      <div class="parrilla-header">Lunes</div>
+      <div class="parrilla-header">Martes</div>
+      <div class="parrilla-header">Miércoles</div>
+      <div class="parrilla-header">Jueves</div>
+      <div class="parrilla-header">Viernes</div>
+
+      <!-- SEMANA 1 -->
+      <div class="week-label">SEM 1<br/><small>Valor</small></div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">🎬 Reel: Top 5 errores</span>
+        <span class="copy">"5 errores de inglés que todos los hispanohablantes cometen" — gancho viral</span>
+      </div>
+      <div class="parrilla-cell c-trans">
+        <span class="tipo">Transformación</span>
+        <span class="titulo">⭐ Testimonio en video</span>
+        <span class="copy">Ejecutivo: "Me certificaron en 48 horas y conseguí el ascenso que esperaba"</span>
+      </div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">📊 Carrusel: Vocabulario trabajo</span>
+        <span class="copy">"20 palabras en inglés que necesitas en tu trabajo" — 8 slides</span>
+      </div>
+      <div class="parrilla-cell c-com">
+        <span class="tipo">Comunidad</span>
+        <span class="titulo">❓ Story: Quiz ejecutivo</span>
+        <span class="copy">"¿Tu inglés está frenando tu carrera? Responde esto" — lead capture de profesionales</span>
+      </div>
+      <div class="parrilla-cell c-ads">
+        <span class="tipo">Anuncio</span>
+        <span class="titulo">🎯 Ad: Clase de prueba gratis</span>
+        <span class="copy">Video corto + formulario Meta: "Agenda tu clase de diagnóstico sin costo"</span>
+      </div>
+
+      <!-- SEMANA 2 -->
+      <div class="week-label">SEM 2<br/><small>Viral</small></div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">🎬 Reel: Pronunciación</span>
+        <span class="copy">"Palabras que los latinos siempre pronuncian mal en inglés" — altísimo potencial viral</span>
+      </div>
+      <div class="parrilla-cell c-oferta">
+        <span class="tipo">Oferta</span>
+        <span class="titulo">📋 Carrusel: Nuestros cursos</span>
+        <span class="copy">Presentación visual de modalidades: online, presencial, corporativo, con horarios</span>
+      </div>
+      <div class="parrilla-cell c-trans">
+        <span class="tipo">Transformación</span>
+        <span class="titulo">🏆 Certificado TrackTest</span>
+        <span class="copy">"Carlos necesitaba certificación para su empresa multinacional — la obtuvo en 48 horas" — prueba real</span>
+      </div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">📝 Post: UK vs. US English</span>
+        <span class="copy">Diferencias que sorprenden: colour/color, lift/elevator — altísimo engagement</span>
+      </div>
+      <div class="parrilla-cell c-ads">
+        <span class="tipo">Anuncio</span>
+        <span class="titulo">🎯 Ad: Ejecutivos y Emprendedores</span>
+        <span class="copy">Segmentación a gerentes/emprendedores: "Certifica tu inglés y cierra negocios internacionales"</span>
+      </div>
+
+      <!-- SEMANA 3 -->
+      <div class="week-label">SEM 3<br/><small>Conversión</small></div>
+      <div class="parrilla-cell c-trans">
+        <span class="tipo">Transformación</span>
+        <span class="titulo">🎬 Reel: Antes y después</span>
+        <span class="copy">Profesional: cómo hablaba en reuniones antes de certificarse vs. ahora que cierra negocios en inglés</span>
+      </div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">📊 Carrusel: Phrasal Verbs</span>
+        <span class="copy">"10 phrasal verbs que usarás SIEMPRE en el trabajo" — mucho guardado</span>
+      </div>
+      <div class="parrilla-cell c-oferta">
+        <span class="tipo">Oferta</span>
+        <span class="titulo">🎓 Post: TrackTest</span>
+        <span class="copy">"¿Qué es TrackTest y por qué es mejor que otros exámenes de inglés?" — educa y convierte</span>
+      </div>
+      <div class="parrilla-cell c-com">
+        <span class="tipo">Comunidad</span>
+        <span class="titulo">🌍 Reel: Inglés en series</span>
+        <span class="copy">"Aprende inglés con estas frases de Friends / The Office" — entretenimiento + valor</span>
+      </div>
+      <div class="parrilla-cell c-ads">
+        <span class="tipo">Anuncio</span>
+        <span class="titulo">🎯 Ad: Retargeting</span>
+        <span class="copy">Testimonio poderoso para quienes vieron el perfil: "Ellos lo lograron, tú también puedes"</span>
+      </div>
+
+      <!-- SEMANA 4 -->
+      <div class="week-label">SEM 4<br/><small>Comunidad</small></div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">🎬 Reel: Tip de gramática</span>
+        <span class="copy">"¿Cuándo usar SINCE vs FOR? La explicación más simple que existe"</span>
+      </div>
+      <div class="parrilla-cell c-com">
+        <span class="tipo">Comunidad</span>
+        <span class="titulo">👩‍🏫 Post: Nuestros docentes</span>
+        <span class="copy">Presentación de un docente nativo: su historia, de dónde viene, su método</span>
+      </div>
+      <div class="parrilla-cell c-trans">
+        <span class="tipo">Transformación</span>
+        <span class="titulo">📊 Carrusel: Caso de éxito</span>
+        <span class="copy">"Emprendedora certificó su nivel B2, abrió mercado en EEUU y triplicó sus ingresos en 8 meses"</span>
+      </div>
+      <div class="parrilla-cell c-edu">
+        <span class="tipo">Educación</span>
+        <span class="titulo">❓ Story: Q&amp;A Inglés</span>
+        <span class="copy">"Pregúntanos tu duda de inglés más frecuente" + respuestas publicadas el viernes</span>
+      </div>
+      <div class="parrilla-cell c-oferta">
+        <span class="tipo">Oferta</span>
+        <span class="titulo">🎯 Recap + CTA</span>
+        <span class="copy">"Nuevas matrículas abiertas — plazas limitadas — grupos de máx. 8 personas"</span>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; padding-top:14px; border-top:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#c7d2fe;"></div><span style="font-size:11px;">Educación en Inglés</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#a7f3d0;"></div><span style="font-size:11px;">Transformación</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#fde68a;"></div><span style="font-size:11px;">Oferta Académica</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#fbcfe8;"></div><span style="font-size:11px;">Cultura y Comunidad</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#bbf7d0;"></div><span style="font-size:11px;">Anuncio Pagado</span></div>
+    </div>
+  </div>
+
+  <!-- IDEAS VIRALES -->
+  <div class="section-label">🔥 Top 10 Ideas de Contenido con Potencial Viral (Orgánico)</div>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title"><span>💡</span> Formatos que dominan en academias de idiomas — basados en lo que ya funciona globalmente</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="viral-item">
+        <div class="viral-num">1</div>
+        <div class="viral-text">
+          <strong>🎬 "Pronuncias mal estas palabras" Reel</strong>
+          <span>Palabras en inglés que los ecuatorianos/latinos siempre pronuncian mal. Altísimo engagement por vergüenza positiva + aprendizaje.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">2</div>
+        <div class="viral-text">
+          <strong>📊 Carrusel "5 errores que te hacen sonar NO nativo"</strong>
+          <span>Lista de errores gramaticales + corrección. Genera muchos guardados y compartidos. Formato súper popular en idiomas.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">3</div>
+        <div class="viral-text">
+          <strong>🎬 Antes y después en video (estudiante real)</strong>
+          <span>Estudiante hablando inglés al inicio del curso vs. al final. El formato más poderoso para conversión B2C.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">4</div>
+        <div class="viral-text">
+          <strong>❓ Story Quiz: "¿Tu inglés está frenando tu carrera?"</strong>
+          <span>3 preguntas para profesionales. Cierra con "Descubre tu nivel certificado en 48 horas" → lead gen de ejecutivos y emprendedores.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">5</div>
+        <div class="viral-text">
+          <strong>🎬 "El inglés del colegio vs. el inglés que necesitas para hacer negocios"</strong>
+          <span>Contraste entre inglés escolar y el inglés de reuniones, negociaciones y contratos internacionales. Muy relacionable para ejecutivos y emprendedores.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">6</div>
+        <div class="viral-text">
+          <strong>📝 "Aprende inglés con series/películas"</strong>
+          <span>Frases icónicas de Friends, The Office, Suits con su traducción y uso correcto. Entretenimiento + valor = virales.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">7</div>
+        <div class="viral-text">
+          <strong>🌍 UK vs. US English — diferencias que sorprenden</strong>
+          <span>Carrusel o reel con diferencias reales (colour/color, chips/crisps, boot/trunk). Muy compartido por su factor sorpresa.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">8</div>
+        <div class="viral-text">
+          <strong>💼 "Inglés que necesitas para cerrar negocios internacionales"</strong>
+          <span>Frases reales para negociaciones, contratos, pitches y reuniones con clientes extranjeros. Muy buscado por ejecutivos y emprendedores 30–50 años.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">9</div>
+        <div class="viral-text">
+          <strong>🏆 "Obtuve mi certificación B2 en 48 horas"</strong>
+          <span>Historia del proceso TrackTest. Posiciona a Interlink como la opción más rápida y oficial. Diferenciador competitivo clave.</span>
+        </div>
+      </div>
+      <div class="viral-item">
+        <div class="viral-num">10</div>
+        <div class="viral-text">
+          <strong>🎙️ "Un día en clase con Interlink" — BTS</strong>
+          <span>Video behind the scenes de una clase real con docente nativo. Humaniza la marca y elimina el miedo a inscribirse.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FREQUENCY + AD FORMATS -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title"><span>📡</span> Frecuencia de Publicación Recomendada</div>
+      <table class="freq-table">
+        <thead><tr><th>Formato</th><th>Plataforma</th><th>Frecuencia</th><th>Prioridad</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>🎬 Reels educativos</td>
+            <td>Instagram</td>
+            <td><strong>4–5 / semana</strong></td>
+            <td><span class="badge high">MÁXIMA</span></td>
+          </tr>
+          <tr>
+            <td>📊 Carruseles</td>
+            <td>IG + FB</td>
+            <td><strong>3 / semana</strong></td>
+            <td><span class="badge high">Alta</span></td>
+          </tr>
+          <tr>
+            <td>📲 Stories interactivas</td>
+            <td>Instagram</td>
+            <td><strong>7 / semana (diario)</strong></td>
+            <td><span class="badge high">Alta</span></td>
+          </tr>
+          <tr>
+            <td>🖼️ Post imagen/texto</td>
+            <td>Facebook</td>
+            <td><strong>3 / semana</strong></td>
+            <td><span class="badge med">Media</span></td>
+          </tr>
+          <tr>
+            <td>📹 Video largo (testimonio)</td>
+            <td>Facebook</td>
+            <td><strong>1 / semana</strong></td>
+            <td><span class="badge med">Media</span></td>
+          </tr>
+          <tr>
+            <td>🎯 Anuncios Meta Ads</td>
+            <td>FB + IG</td>
+            <td><strong>3 creativos activos</strong></td>
+            <td><span class="badge high">Alta</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;padding:12px;background:#eef2ff;border-radius:10px;">
+        <strong style="font-size:12px;color:#4338ca;">📌 Total mensual recomendado:</strong>
+        <p style="font-size:11px;color:#3730a3;margin-top:4px;"><strong>20 piezas feed</strong> + <strong>28–35 Stories</strong> + <strong>3 creativos de ads activos</strong> = ~55 activos/mes</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🎯</span> Top 5 Formatos de Anuncio que Más Convierten</div>
+      <div class="format-row">
+        <div class="format-num">1</div>
+        <div class="format-info">
+          <strong>Video "Antes y Después" de estudiante real</strong>
+          <span>El estudiante habla inglés con dificultad → meses después habla fluidamente. Hook emocional máximo. Mejor formato B2C para academias.</span>
+        </div>
+        <span class="format-badge both">FB+IG</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">2</div>
+        <div class="format-info">
+          <strong>"Clase de diagnóstico GRATIS" — Lead Gen</strong>
+          <span>Formulario nativo de Meta. CTA: "Descubre tu nivel de inglés sin costo". Muy bajo CPL porque el valor percibido es alto.</span>
+        </div>
+        <span class="format-badge fb">FB</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">3</div>
+        <div class="format-info">
+          <strong>Click-to-WhatsApp con oferta de matrícula</strong>
+          <span>"Inicia este mes con beca del 20% — escríbenos ahora". Muy efectivo en Ecuador. El asesor cierra en minutos.</span>
+        </div>
+        <span class="format-badge both">FB+IG</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">4</div>
+        <div class="format-info">
+          <strong>Ad educativo + CTA al final (content ad)</strong>
+          <span>Reel con un tip real de inglés, al final: "Aprende inglés 3x más rápido con Interlink. Primeras 2 clases gratis."</span>
+        </div>
+        <span class="format-badge ig">IG</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">5</div>
+        <div class="format-info">
+          <strong>Ad para emprendedores con proyección internacional</strong>
+          <span>Segmentación: emprendedores/dueños de negocio. Mensaje: "Tu empresa ya está lista para el mundo — ¿lo está tu inglés? Certifícate en 48 horas."</span>
+        </div>
+        <span class="format-badge fb">FB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORGANICO + PAGADO TIPS -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title"><span>🌱</span> Qué Funciona — Contenido Orgánico para Academias de Idiomas</div>
+      <div class="tip">
+        <span class="tip-icon">🎬</span>
+        <div class="tip-text">
+          <strong>Reels educativos son el rey absoluto</strong>
+          <span>Academias de idiomas que publican 4–5 reels semanales con tips reales de inglés crecen 3x más rápido. El algoritmo premia el contenido educativo que genera guardados y compartidos.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">📊</span>
+        <div class="tip-text">
+          <strong>Carruseles "guardables" = alcance orgánico sostenido</strong>
+          <span>Un carrusel con vocabulario laboral o phrasal verbs genera guardados masivos. Los guardados le dicen a Meta "este contenido es valioso" → más distribución gratuita.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">❓</span>
+        <div class="tip-text">
+          <strong>Stories quiz generan leads gratis</strong>
+          <span>"¿Cuál es tu nivel de inglés? Responde esto" → al final: "Descúbrelo con nuestro test gratis". Lead orgánico sin pagar un centavo.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🤝</span>
+        <div class="tip-text">
+          <strong>Collab con micro-influencers locales</strong>
+          <span>Profesional joven ecuatoriano que comparte su historia de conseguir trabajo gracias al inglés. Auténtico, relatable, cero producción costosa.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🎭</span>
+        <div class="tip-text">
+          <strong>El humor + educación = combo imbatible</strong>
+          <span>"Lo que dijiste en inglés vs. lo que quisiste decir" — formato de contraste divertido que genera comentarios y compartidos masivos. Muy viral en LATAM.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💰</span> Qué Funciona — Meta Ads para Academias de Idiomas</div>
+      <div class="tip">
+        <span class="tip-icon">⚡</span>
+        <div class="tip-text">
+          <strong>Hook emocional en los primeros 3 segundos</strong>
+          <span>"¿Cuántos contratos has perdido por no tener tu inglés certificado?" — El FOMO profesional es el trigger más efectivo para ejecutivos y emprendedores.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🆓</span>
+        <div class="tip-text">
+          <strong>"Gratis" es el CTA que más convierte en educación</strong>
+          <span>Clase de diagnóstico gratis, prueba gratuita, sesión sin costo. Baja la barrera de entrada al mínimo. El primer punto de contacto = alta tasa de conversión posterior.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🎯</span>
+        <div class="tip-text">
+          <strong>Segmentación por audiencias de intención</strong>
+          <span>Intereses: desarrollo profesional + LinkedIn + negocios internacionales + emprendimiento + liderazgo ejecutivo + certificaciones profesionales. Cargo: gerente, director, emprendedor, dueño de negocio. Ecuador 28–52 años.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">📱</span>
+        <div class="tip-text">
+          <strong>Pixel + retargeting = CPL bajísimo</strong>
+          <span>Quien visitó el sitio o interactuó con el perfil ya está interesado. Un anuncio de retargeting con testimonio cierra mucho más barato que frío.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">⏰</span>
+        <div class="tip-text">
+          <strong>Urgencia real: plazas limitadas</strong>
+          <span>"Grupos de máximo 8 personas — quedan 3 cupos" es un argumento genuino de Interlink que genera urgencia real y elimina la procrastinación del interesado.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section-label">📈 KPIs a Medir Mensualmente</div>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title"><span>📐</span> Indicadores Clave de Desempeño — Academia de Idiomas</div>
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 5%</div>
+        <div class="kpi-name">Engagement Rate Instagram (meta para edu)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 1.5%</div>
+        <div class="kpi-name">CTR promedio anuncios Meta</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≤ $8</div>
+        <div class="kpi-name">CPL (Costo por Lead) — academia de idiomas EC</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">+15%</div>
+        <div class="kpi-name">Crecimiento seguidores mensual (con reels edu)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 50%</div>
+        <div class="kpi-name">Tasa de guardados en carruseles de vocabulario</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 35%</div>
+        <div class="kpi-name">Open rate Stories semana 1</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">15–25</div>
+        <div class="kpi-name">Leads calificados por mes (objetivo inicial)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 20%</div>
+        <div class="kpi-name">Tasa de conversión lead → matrícula</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">3x</div>
+        <div class="kpi-name">ROAS mínimo en campañas de conversión</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK WINS + TONO -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title"><span>⚡</span> Quick Wins — Primeras 4 Semanas</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#ecfdf5;border-radius:8px;border-left:3px solid #059669;">
+          <strong style="color:#059669;flex-shrink:0;">Sem 1</strong>
+          <span style="font-size:12px;">Optimizar bio: "Certifica tu inglés en 48 horas 🇺🇸 | Para ejecutivos y emprendedores | Grupos de máx. 8 | ↓ Diagnóstico gratis". Link a WhatsApp o landing con foco profesional.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#eef2ff;border-radius:8px;border-left:3px solid #4338ca;">
+          <strong style="color:#4338ca;flex-shrink:0;">Sem 2</strong>
+          <span style="font-size:12px;">Publicar 3 Reels educativos con los temas más buscados: pronunciación, errores comunes, y vocabulario laboral. Estos pueden crecer solos con el algoritmo.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#fffbeb;border-radius:8px;border-left:3px solid #d97706;">
+          <strong style="color:#d97706;flex-shrink:0;">Sem 3</strong>
+          <span style="font-size:12px;">Lanzar campaña Lead Gen "Certifica tu inglés en 48 horas" en Meta. Presupuesto inicial: $15–20/día. Segmentar: 28–52 años, Ecuador, cargo ejecutivo/emprendedor/dueño de negocio.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#fdf2f8;border-radius:8px;border-left:3px solid #db2777;">
+          <strong style="color:#db2777;flex-shrink:0;">Sem 4</strong>
+          <span style="font-size:12px;">Activar Pixel Meta en el sitio web. Recolectar 1–2 testimonios en video de estudiantes reales. Estos serán los activos más valiosos para ads el siguiente mes.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🎨</span> Identidad Visual y Tono de Comunicación</div>
+      <div style="margin-bottom:14px;">
+        <strong style="font-size:12px;display:block;margin-bottom:8px;">🎨 Paleta de colores sugerida</strong>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div style="padding:8px 14px;border-radius:8px;background:#312e81;color:white;font-size:11px;font-weight:700;">Morado #312E81</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#059669;color:white;font-size:11px;font-weight:700;">Verde #059669</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#fbbf24;color:#1f2937;font-size:11px;font-weight:700;">Dorado #FBBF24</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#f8fafc;color:#333;border:1px solid #ddd;font-size:11px;font-weight:700;">Blanco #F8FAFC</div>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <strong style="font-size:12px;display:block;margin-bottom:6px;">💬 Tono de comunicación</strong>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div style="padding:8px;background:#ecfdf5;border-radius:8px;font-size:11px;">✅ <strong>Motivador y cálido</strong> — celebra logros</div>
+          <div style="padding:8px;background:#ecfdf5;border-radius:8px;font-size:11px;">✅ <strong>Experto accesible</strong> — no condescendiente</div>
+          <div style="padding:8px;background:#ecfdf5;border-radius:8px;font-size:11px;">✅ <strong>Cercano y coloquial</strong> — como un amigo que sabe inglés</div>
+          <div style="padding:8px;background:#ecfdf5;border-radius:8px;font-size:11px;">✅ <strong>Orientado a resultados</strong> — "aprende y certifica"</div>
+          <div style="padding:8px;background:#fee2e2;border-radius:8px;font-size:11px;">❌ <strong>Muy académico / rígido</strong></div>
+          <div style="padding:8px;background:#fee2e2;border-radius:8px;font-size:11px;">❌ <strong>Solo contenido de venta</strong></div>
+        </div>
+      </div>
+      <div>
+        <strong style="font-size:12px;display:block;margin-bottom:6px;">📌 Hashtags estratégicos</strong>
+        <p style="font-size:11px;color:#475569;line-height:1.8;">
+          #CertificaciónInglés #TrackTest #InglésEjecutivo #InglésParaNegocios #EmprendedoresEcuador #InterlinkSchool #InglésEcuador #LiderazgoEjecutivo #NegociosInternacionales #ProfesionalesEcuador #BilingüeEcuador
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESUPUESTO -->
+  <div class="section-label">💵 Presupuesto Mensual Sugerido — Meta Ads</div>
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div style="padding:20px;background:#ecfdf5;border-radius:14px;border:2px solid #6ee7b7;">
+      <div style="font-size:13px;font-weight:800;color:#059669;margin-bottom:4px;">🌱 STARTER</div>
+      <div style="font-size:32px;font-weight:900;color:#059669;">$300/mes</div>
+      <div style="font-size:11px;color:#065f46;margin-top:10px;line-height:1.8;">
+        • $180 — Lead Gen "clase diagnóstico gratis"<br/>
+        • $80 — Retargeting con testimonio<br/>
+        • $40 — Boost mejores posts orgánicos<br/><br/>
+        <strong>Meta: 15–25 leads/mes</strong><br/>
+        <strong>Matrículas esperadas: 3–5</strong>
+      </div>
+    </div>
+    <div style="padding:20px;background:#eef2ff;border-radius:14px;border:2px solid #a5b4fc;">
+      <div style="font-size:13px;font-weight:800;color:#4338ca;margin-bottom:4px;">📈 GROWTH</div>
+      <div style="font-size:32px;font-weight:900;color:#4338ca;">$600/mes</div>
+      <div style="font-size:11px;color:#3730a3;margin-top:10px;line-height:1.8;">
+        • $280 — Lead Gen ejecutivos/emprendedores<br/>
+        • $150 — Ad Corporativo B2B (empresas y equipos)<br/>
+        • $120 — Retargeting multiaudiencia<br/>
+        • $50 — Click-to-WhatsApp urgencia<br/><br/>
+        <strong>Meta: 40–60 leads/mes</strong><br/>
+        <strong>Matrículas esperadas: 8–12</strong>
+      </div>
+    </div>
+    <div style="padding:20px;background:#fffbeb;border-radius:14px;border:2px solid #fcd34d;">
+      <div style="font-size:13px;font-weight:800;color:#b45309;margin-bottom:4px;">🚀 ESCALA</div>
+      <div style="font-size:32px;font-weight:900;color:#b45309;">$1,200/mes</div>
+      <div style="font-size:11px;color:#92400e;margin-top:10px;line-height:1.8;">
+        • $500 — Lead Gen + conversión activos<br/>
+        • $300 — Ad corporativo (cierres grandes)<br/>
+        • $250 — Retargeting (LALs + visitantes)<br/>
+        • $150 — Boosts estratégicos + awareness<br/><br/>
+        <strong>Meta: 80–120 leads/mes</strong><br/>
+        <strong>Matrículas esperadas: 20–30</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Dashboard elaborado por IA · INTERLINK SCHOOL — Estrategia de Contenido Digital · Julio 2026<br/>
+  Basado en análisis de mercado academias de idiomas Ecuador, benchmark competitivo y mejores prácticas Meta Ads 2026
+</div>
+
+</body>
+</html>
